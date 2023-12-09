@@ -3,7 +3,7 @@ package com.app10x.weatherapp.data.responses
 import com.google.gson.annotations.SerializedName
 
 
-data class List (
+data class DateList (
 
   @SerializedName("dt"         ) var dt         : Int?               = null,
   @SerializedName("main"       ) var main       : Main?              = Main(),
