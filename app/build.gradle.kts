@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -8,6 +10,13 @@ plugins {
 kotlin {
     jvmToolchain {
         languageVersion.set(JavaLanguageVersion.of("11"))
+    }
+}
+
+
+fun readProperties(propertiesFile: File) = Properties().apply {
+    propertiesFile.inputStream().use { fis ->
+        load(fis)
     }
 }
 
@@ -22,6 +31,13 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+//        getting API Key from file which is not part of repo
+        val projectProperties = readProperties(file("../apikey.properties"))
+        buildConfigField(
+            "String",
+            "OPEN_WEATHER_KEY",
+            projectProperties["OPEN_WEATHER_KEY"] as String
+        )
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
