@@ -23,7 +23,9 @@ fun readProperties(propertiesFile: File) = Properties().apply {
 android {
     namespace = "com.app10x.weatherapp"
     compileSdk = 34
-
+    buildFeatures {
+        buildConfig = true
+    }
     defaultConfig {
         applicationId = "com.app10x.weatherapp"
         minSdk = 24
