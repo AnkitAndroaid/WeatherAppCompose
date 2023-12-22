@@ -21,13 +21,13 @@ fun readProperties(propertiesFile: File) = Properties().apply {
 }
 
 android {
-    namespace = "com.app10x.weatherapp"
+    namespace = "com.ankit.gupta.weatherapp"
     compileSdk = 34
     buildFeatures {
         buildConfig = true
     }
     defaultConfig {
-        applicationId = "com.app10x.weatherapp"
+        applicationId = "com.ankit.gupta.weatherapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
