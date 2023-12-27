@@ -7,12 +7,6 @@ plugins {
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
 }
-kotlin {
-    jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of("11"))
-    }
-}
-
 
 fun readProperties(propertiesFile: File) = Properties().apply {
     propertiesFile.inputStream().use { fis ->
@@ -25,7 +19,12 @@ android {
     compileSdk = 34
     buildFeatures {
         buildConfig = true
+        compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.4"
+    }
+
     defaultConfig {
         applicationId = "com.ankit.gupta.weatherapp"
         minSdk = 24
@@ -56,11 +55,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 
     packaging {
@@ -71,6 +70,7 @@ android {
 }
 
 dependencies {
+    debugImplementation("androidx.compose.ui:ui-tooling:1.5.4")
     val lifecycle_version = "2.6.2"
 
 // Compose
@@ -80,7 +80,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-
+    implementation("androidx.compose.animation:animation:1.5.4")
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     // LiveData
@@ -105,6 +105,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(kotlin("script-runtime"))
 }
 // Allow references to generated code
 kapt {

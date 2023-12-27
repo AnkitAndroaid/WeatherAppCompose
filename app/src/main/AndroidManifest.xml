@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight">
         <activity
-            android:name=".ui.WeatherAppActivity"
+            android:name=".ui.WeatherAppComposeActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.DayNight">
